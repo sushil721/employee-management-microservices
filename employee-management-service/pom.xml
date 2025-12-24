@@ -17,6 +17,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>employee-service</module>
+        <module>department-service</module>
     </modules>
 	<licenses>
 		<license/>
@@ -32,6 +33,7 @@
 	</scm>
 	<properties>
 		<java.version>25</java.version>
+        <spring-cloud.version>2025.1.0</spring-cloud.version>
 	</properties>
 	<dependencies>
 		<dependency>
