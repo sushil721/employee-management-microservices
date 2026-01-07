@@ -19,6 +19,7 @@
         <module>employee-service</module>
         <module>department-service</module>
         <module>service-registry-server</module>
+        <module>api-gateway-service</module>
     </modules>
 	<licenses>
 		<license/>
