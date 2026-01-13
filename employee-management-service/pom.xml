@@ -20,6 +20,7 @@
         <module>department-service</module>
         <module>service-registry-server</module>
         <module>api-gateway-service</module>
+        <module>cloud-config-server</module>
     </modules>
 	<licenses>
 		<license/>
