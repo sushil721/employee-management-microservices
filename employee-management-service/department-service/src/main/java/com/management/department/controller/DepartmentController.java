@@ -25,4 +25,5 @@ public class DepartmentController {
     public ResponseEntity<DepartmentDTO> getDepartmentByDepartmentId(@PathVariable("departmentCode") String departmentCode){
         return  new ResponseEntity<>(departmentService.getDepartmentByDepartmentCode(departmentCode), HttpStatus.OK);
     }
+
 }
