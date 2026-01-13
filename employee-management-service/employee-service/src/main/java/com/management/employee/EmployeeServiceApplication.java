@@ -2,6 +2,7 @@ package com.management.employee;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.restclient.RestTemplateBuilder;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
@@ -17,10 +18,10 @@ public class EmployeeServiceApplication {
 
 //1. RestTemplate is in mentainence mode. Soon it will depricated.
 /*    @Bean
-    public RestTemplate restTemplate(){
-        return new RestTemplate();
-    }
-*/
+    public RestTemplate restTemplate(RestTemplateBuilder builder){
+        return builder.build();
+    }*/
+
 //2. Use WebClient for Synchronous and Asynchronous and Stream call.
 /*    @Bean
     public WebClient webClient(){

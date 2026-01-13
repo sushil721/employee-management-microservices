@@ -56,14 +56,14 @@ public class EmployeeServiceImpl implements EmployeeService{
         apiResponseDTO.setEmployee(employeeDTO);
 
 //1. RestTemplate is in mentainence mode. Soon it will depricated.
-/*        ResponseEntity<DepartmentDTO> departmentDTOResponseEntity = restTemplate.getForEntity(DEPARTMENT_URL+SLASH+employeeDTO.getDepartmentCode(), DepartmentDTO.class);
+       /*ResponseEntity<DepartmentDTO> departmentDTOResponseEntity = restTemplate.getForEntity(DEPARTMENT_URL+SLASH+employeeDTO.getDepartmentCode(), DepartmentDTO.class);
         try {
             DepartmentDTO departmentDTO = departmentDTOResponseEntity.getBody();
             apiResponseDTO.setDepartment(departmentDTO);
         } catch (Exception e) {
             throw new ResourceNotFoundException("Department", " Department id", employeeDTO.getDepartmentCode());
         }
- */
+        */
 //2. Use WebClient for Synchronous and Asynchronous and Stream call.
 /*        DepartmentDTO departmentDTO = webClient.get()// GET is call method type.
                 .uri(DEPARTMENT_URL+SLASH+employeeDTO.getDepartmentCode())
@@ -78,7 +78,6 @@ public class EmployeeServiceImpl implements EmployeeService{
 // 3.  Feign creates a dynamic implementation of an interface decorated with JAX-RS or Spring MVC annotations
         DepartmentDTO departmentDTO = departmentClient.getDepartmentByDepartmentId(employeeDTO.getDepartmentCode());
         apiResponseDTO.setDepartment(departmentDTO);
-
         return apiResponseDTO;
     }
 
