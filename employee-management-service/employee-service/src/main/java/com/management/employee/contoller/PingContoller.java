@@ -1,4 +1,4 @@
-package com.management.department.controller;
+package com.management.employee.contoller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("department/ping")
+@RequestMapping("employee/ping")
 @RefreshScope
 public class PingContoller {
 
