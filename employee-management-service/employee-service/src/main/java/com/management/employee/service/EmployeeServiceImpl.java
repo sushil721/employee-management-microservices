@@ -10,7 +10,9 @@ import com.management.employee.exception.ResourceNotFoundException;
 import com.management.employee.mapper.AutoEmployeeMapper;
 import com.management.employee.repository.EmployeeRepository;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,9 @@ import reactor.core.publisher.Mono;
 import java.util.Optional;
 import java.util.function.Consumer;
 
+import static java.rmi.server.LogStream.log;
+
+@Slf4j
 @AllArgsConstructor
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
@@ -48,10 +53,11 @@ public class EmployeeServiceImpl implements EmployeeService{
         return AutoEmployeeMapper.MAPPER.entityToDto(savedEmployee);
     }
 
-    @CircuitBreaker(name = "${spring.application.name}",
-            fallbackMethod = "getDefaultDepartmentFallback")
+    //@CircuitBreaker(name = "${spring.application.name}", fallbackMethod = "getDefaultDepartmentFallback")
+    @Retry(name = "${spring.application.name}", fallbackMethod = "getDefaultDepartmentFallback")
     @Override
     public APIResponseDTO getEmployeeById(Long id) {
+        log.info("Inside the getEmployeeById id : {}", id);
         APIResponseDTO apiResponseDTO = new APIResponseDTO();
         EmployeeDTO employeeDTO = employeeRepository.findById(id)
                 .map(AutoEmployeeMapper.MAPPER::entityToDto)
@@ -92,6 +98,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 */
 
     public APIResponseDTO getDefaultDepartmentFallback(Long id, Exception exception) {
+        log.info("Inside the getDefaultDepartmentFallback : {}", exception.getMessage());
         APIResponseDTO apiResponseDTO = new APIResponseDTO();
         EmployeeDTO employeeDTO = employeeRepository.findById(id)
                 .map(AutoEmployeeMapper.MAPPER::entityToDto)
