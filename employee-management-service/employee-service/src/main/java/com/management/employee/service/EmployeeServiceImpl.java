@@ -9,6 +9,7 @@ import com.management.employee.exception.EmailAlreadyExistException;
 import com.management.employee.exception.ResourceNotFoundException;
 import com.management.employee.mapper.AutoEmployeeMapper;
 import com.management.employee.repository.EmployeeRepository;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -27,7 +28,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     private static final String SLASH = "/";
     private EmployeeRepository employeeRepository;
 //    private RestTemplate restTemplate;
-//    private WebClient webClient;
+      private WebClient webClient;
       private DepartmentClient departmentClient;
 
     @Override
@@ -47,6 +48,8 @@ public class EmployeeServiceImpl implements EmployeeService{
         return AutoEmployeeMapper.MAPPER.entityToDto(savedEmployee);
     }
 
+    @CircuitBreaker(name = "${spring.application.name}",
+            fallbackMethod = "getDefaultDepartmentFallback")
     @Override
     public APIResponseDTO getEmployeeById(Long id) {
         APIResponseDTO apiResponseDTO = new APIResponseDTO();
@@ -65,7 +68,7 @@ public class EmployeeServiceImpl implements EmployeeService{
         }
         */
 //2. Use WebClient for Synchronous and Asynchronous and Stream call.
-/*        DepartmentDTO departmentDTO = webClient.get()// GET is call method type.
+        DepartmentDTO departmentDTO = webClient.get()// GET is call method type.
                 .uri(DEPARTMENT_URL+SLASH+employeeDTO.getDepartmentCode())
                 .retrieve()
                 .onStatus(status -> status.value() == 404,
@@ -74,10 +77,10 @@ public class EmployeeServiceImpl implements EmployeeService{
                 .bodyToMono(DepartmentDTO.class)
                 .block();
         apiResponseDTO.setDepartment(departmentDTO);
-        */
+
 // 3.  Feign creates a dynamic implementation of an interface decorated with JAX-RS or Spring MVC annotations
-        DepartmentDTO departmentDTO = departmentClient.getDepartmentByDepartmentId(employeeDTO.getDepartmentCode());
-        apiResponseDTO.setDepartment(departmentDTO);
+/*        DepartmentDTO departmentDTO = departmentClient.getDepartmentByDepartmentId(employeeDTO.getDepartmentCode());
+        apiResponseDTO.setDepartment(departmentDTO);*/
         return apiResponseDTO;
     }
 
@@ -87,4 +90,19 @@ public class EmployeeServiceImpl implements EmployeeService{
             .map( AutoEmployeeMapper.MAPPER::entityToDto)
             .collect(toList());
 */
+
+    public APIResponseDTO getDefaultDepartmentFallback(Long id, Exception exception) {
+        APIResponseDTO apiResponseDTO = new APIResponseDTO();
+        EmployeeDTO employeeDTO = employeeRepository.findById(id)
+                .map(AutoEmployeeMapper.MAPPER::entityToDto)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee", "id" , String.valueOf(id)));
+        apiResponseDTO.setEmployee(employeeDTO);
+
+        DepartmentDTO departmentDTO = new DepartmentDTO();
+        departmentDTO.setDepartmentName("R&D Department");
+        departmentDTO.setDepartmentCode("RD001");
+        departmentDTO.setDepartmentDescription("This is default department description");
+        apiResponseDTO.setDepartment(departmentDTO);
+        return apiResponseDTO;
+    }
 }

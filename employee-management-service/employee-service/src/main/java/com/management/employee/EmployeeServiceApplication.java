@@ -23,9 +23,8 @@ public class EmployeeServiceApplication {
     }*/
 
 //2. Use WebClient for Synchronous and Asynchronous and Stream call.
-/*    @Bean
+    @Bean
     public WebClient webClient(){
         return WebClient.builder().build();
     }
-*/
 }
