@@ -15,7 +15,8 @@ public class AutoEmployeeMapperImpl implements AutoEmployeeMapper {
                     dto.getFirstName(),
                     dto.getLastName(),
                     dto.getEmail(),
-                    dto.getDepartmentCode()
+                    dto.getDepartmentCode(),
+                    dto.getOrganizationCode()
             );
         }
     }
@@ -29,7 +30,8 @@ public class AutoEmployeeMapperImpl implements AutoEmployeeMapper {
                     employee.getFirstName(),
                     employee.getLastName(),
                     employee.getEmail(),
-                    employee.getDepartmentCode()
+                    employee.getDepartmentCode(),
+                    employee.getOrganizationCode()
             );
         }
     }

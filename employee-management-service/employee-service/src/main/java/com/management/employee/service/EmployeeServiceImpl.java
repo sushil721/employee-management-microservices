@@ -4,6 +4,7 @@ import com.management.employee.client.DepartmentClient;
 import com.management.employee.dto.APIResponseDTO;
 import com.management.employee.dto.DepartmentDTO;
 import com.management.employee.dto.EmployeeDTO;
+import com.management.employee.dto.OrganizationDTO;
 import com.management.employee.entity.Employee;
 import com.management.employee.exception.EmailAlreadyExistException;
 import com.management.employee.exception.ResourceNotFoundException;
@@ -30,6 +31,7 @@ import static java.rmi.server.LogStream.log;
 public class EmployeeServiceImpl implements EmployeeService{
 
     private static final String DEPARTMENT_URL = "http://localhost:8081/api/departments";
+    private static final String ORGANIZATION_URL = "http://localhost:8084/api/organizations";
     private static final String SLASH = "/";
     private EmployeeRepository employeeRepository;
 //    private RestTemplate restTemplate;
@@ -83,6 +85,16 @@ public class EmployeeServiceImpl implements EmployeeService{
                 .bodyToMono(DepartmentDTO.class)
                 .block();
         apiResponseDTO.setDepartment(departmentDTO);
+
+        OrganizationDTO organizationDTO = webClient.get()
+                .uri(ORGANIZATION_URL+SLASH+employeeDTO.getOrganizationCode())
+                .retrieve()
+                .onStatus(status -> status.value() == 404,
+                        response -> Mono.error(
+                                new ResourceNotFoundException("Organization", " Organization ID", employeeDTO.getOrganizationCode())))
+                .bodyToMono(OrganizationDTO.class)
+                .block();
+        apiResponseDTO.setOrganization(organizationDTO);
 
 // 3.  Feign creates a dynamic implementation of an interface decorated with JAX-RS or Spring MVC annotations
 /*        DepartmentDTO departmentDTO = departmentClient.getDepartmentByDepartmentId(employeeDTO.getDepartmentCode());

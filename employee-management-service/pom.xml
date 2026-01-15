@@ -21,6 +21,7 @@
         <module>service-registry-server</module>
         <module>api-gateway-service</module>
         <module>cloud-config-server</module>
+        <module>organization-service</module>
     </modules>
 	<licenses>
 		<license/>

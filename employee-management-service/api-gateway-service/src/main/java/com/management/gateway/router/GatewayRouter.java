@@ -20,6 +20,9 @@ public class GatewayRouter {
                 .route("DEPARTMENT-SERVICE", r -> r.path("/api/departments/**")
                         //.filters(f -> f.stripPrefix(1))
                         .uri("lb://DEPARTMENT-SERVICE"))
+                .route("ORGANIZATION-SERVICE", r -> r.path("/api/organizations/**")
+                        //.filters(f -> f.stripPrefix(1))
+                        .uri("lb://ORGANIZATION-SERVICE"))
                 .build();
     }
 
