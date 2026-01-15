@@ -3,7 +3,12 @@ package com.management.employee.contoller;
 import com.management.employee.dto.APIResponseDTO;
 import com.management.employee.dto.EmployeeDTO;
 import com.management.employee.service.EmployeeService;
+import io.swagger.v3.oas.annotations.ExternalDocumentation;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.info.Contact;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -12,13 +17,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+@Tag(
+        name = "Employee Service - Employee Controller",
+        description = "Employee Service - Employee Controller handles all the operations related to Employees"
+)
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("api/employees")
-@Tag(
-        name = "CURD Rest APIs for Employee operations",
-        description = "CURD Rest APIs- Create Employee, Update Employee, GetAllEmployee, GetEmployeeById, DeleteEmployee"
-)
 public class EmployeeController {
 
     private EmployeeService employeeService;
