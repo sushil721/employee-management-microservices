@@ -32,3 +32,8 @@ employee-management-microservices using react and all patterns
 
 * Zipkin server link:
   [http://localhost:9411/zipkin/]()
+
+  ## Swagger URL:
+  * http://localhost:8081/swagger-ui/index.html
+  * http://localhost:8082/swagger-ui/index.html
+  * http://localhost:8084/swagger-ui/index.html
