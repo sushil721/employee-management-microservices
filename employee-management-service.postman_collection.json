@@ -1,0 +1,413 @@
+{
+  "info": {
+    "_postman_id": "cbe05821-8e11-4b17-9107-16f417db21f7",
+    "name": "employee-management-service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "3029186"
+  },
+  "item": [
+    {
+      "name": "employee-service",
+      "item": [
+        {
+          "name": "ADD-EMPLOYEE",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"firstName\":\"Jyoti\",\r\n    \"lastName\":\"Singh\",\r\n    \"email\":\"jyoti@gmail.com\",\r\n    \"departmentCode\":\"IT001\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8082/api/employees",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "employees"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET-EMPLOYEE-BY-ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/employees/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "employees",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "EMPLOYEE-ACTUATOR-REFRESH",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/actuator/refresh",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "actuator",
+                "refresh"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "EMPLOYEE-BUS-REFRESH",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/actuator/busrefresh",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "actuator",
+                "busrefresh"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET-REFRESH-PING-MESSAGE",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/employee/ping/conf-prop-change",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "employee",
+                "ping",
+                "conf-prop-change"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "department-service",
+      "item": [
+        {
+          "name": "ADD-DEPARTMENT",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"departmentName\":\"IT\",\r\n    \"departmentDescription\":\"Information Technology\",\r\n    \"departmentCode\":\"IT001\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8081/api/departments",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "api",
+                "departments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET-DEPRTMENT-BY-CODE",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8081/api/departments/IT001",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "api",
+                "departments",
+                "IT001"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET-REFRESH-PING-MESSAGE Copy",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8081/department/ping/conf-prop-change",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "department",
+                "ping",
+                "conf-prop-change"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DEPARTMENT-ACTUATOR-REFRESH",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8081/actuator/refresh",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "actuator",
+                "refresh"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DEPARTMENT-BUS-REFRESH",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8081/actuator/busrefresh",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "actuator",
+                "busrefresh"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "organization-service",
+      "item": [
+        {
+          "name": "ADD-ORGANIZATION",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"organizationName\": \"Jyoti Organization\",\r\n    \"organizationDescription\": \"Jyoti Organization\",\r\n    \"organizationAddress\": \"Noida\",\r\n    \"organizationCode\": \"JYOTI_ORG\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8084/api/organizations",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8084",
+              "path": [
+                "api",
+                "organizations"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET-ORGANIZATION-BY-ORG-CODE",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8084/api/organizations/JYOTI_ORG",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8084",
+              "path": [
+                "api",
+                "organizations",
+                "JYOTI_ORG"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "API-GATEWAY",
+      "item": [
+        {
+          "name": "GET-EMPLOYEE-BY-ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/employees/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "employees",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET-DEPARTMENT-BY-CODE",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/departments/IT001",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "departments",
+                "IT001"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET-ORGANIZATION-BY-ORG-CODE Copy",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/organizations/JYOTI_ORG",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "organizations",
+                "JYOTI_ORG"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET-REFRESH-PING-MESSAGE",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/ping/conf-prop-change",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "ping",
+                "conf-prop-change"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:9411/api/v2/spans",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "9411",
+              "path": [
+                "api",
+                "v2",
+                "spans"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
