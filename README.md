@@ -3,7 +3,7 @@ employee-management-microservices using react and all patterns
 
 
 ## Cloud config server repository link:
-* [https://github.com/sushil721/cloud-config-server-repository.git](https://maven.apache.org/guides/index.html)
+* [https://github.com/sushil721/cloud-config-server-repository.git](https://github.com/sushil721/cloud-config-server-repository.git)
 
 ## Rabbit MQ server install in Docker container:
 * [https://hub.docker.com/_/rabbitmq]()
