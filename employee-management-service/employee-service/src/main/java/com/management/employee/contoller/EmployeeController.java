@@ -53,6 +53,6 @@ public class EmployeeController {
     )
     @GetMapping("{id}")
     public ResponseEntity<APIResponseDTO> getEmployeeById(@PathVariable("id") Long id){
-        return new ResponseEntity<>(employeeService.getEmployeeById(id), HttpStatus.FOUND);
+        return new ResponseEntity<>(employeeService.getEmployeeById(id), HttpStatus.OK);
     }
 }
